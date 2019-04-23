@@ -9,7 +9,6 @@ age = null;
 
 var x;
 
-var myNumbers = ["one", "two", "three"];
 
 var person = {
     name: "Varma",
@@ -127,3 +126,143 @@ var sum=function(a,b){
 console.log(sum(1,2))
 
 //JavaScript Hoisting
+
+var myNumbers = ["one", "two", "three"];
+
+myNumbers.push("four");
+myNumbers.unshift("zero")
+
+myNumbers.pop();
+myNumbers.shift();
+
+var myLetters=["a","b","c"]
+
+myLetters.forEach(function(value,position){
+    console.log(value + " at " + position)
+})
+
+var movies=[
+    {
+        id:1,
+        title:"Bahubali",
+        actor:"Prabhas",
+        revenue:300,
+        theaters:["A","B"]
+    },
+    {
+        id:2,
+        title:"Adhurs",
+        actor:"NTR",
+        revenue:15,
+        theaters:["B","C"]
+    },
+    {
+        id:3,
+        title:"Kushi",
+        actor:"Pavan",
+        revenue:75,
+        theaters:["C","D"]
+    }
+]
+
+//every, some, filter, map, reduce
+
+/*
+    1. Is all movies crossed 100Cr revenue?
+*/
+
+var isAll100Cr=movies.every(function(movie){
+    return movie.revue>100;
+})
+
+console.log(isAll100Cr);
+
+
+/*
+ 2. Is any movie crossed 50cr revenue?
+*/
+
+var isAny50=movies.some(function(movie){
+    return movie.revenue>50;
+})
+
+console.log(isAny50)
+
+/*
+3. I want list of actor names of all movies
+
+["Prabhas","NTR","Pavan"]
+*/
+
+var actors=movies.map(function(movie){
+    return movie.actor;
+})
+
+console.log(actors)
+
+
+/*
+    4. I want total revenue of all movies
+*/
+
+var totalRevenue=movies.reduce(function(total,movie){
+    return total + movie.revenue;
+},0)
+
+console.log(totalRevenue)
+
+/*
+    5. I want list of titles in comma seperated string
+
+    "Bahubali,NTR,Kushi"
+*/
+
+var titles=movies.reduce(function(titles,movie){
+    if(titles=="") { return movie.title };
+    return titles+","+movie.title;
+},'')
+
+console.log(titles)
+
+/*
+    6. I want a single object like this
+
+    {
+        "Bahubali":"Prabhas",
+        "Adhurs":"NTR",
+        "Kushi":"Pavan"
+    }
+
+*/
+
+
+/*
+    7. I want list of all theaters of all movies
+
+    ["A","B","C","D"]
+
+*/
+
+var theaters=movies.reduce(function(theaters,movie){
+    movie.theaters.forEach(function(theater){
+        if(theaters.indexOf(theater)==-1)
+        {
+            theaters.push(theater)
+        }
+    })
+
+    return theaters;
+},[])
+
+console.log(JSON.stringify(theaters))
+
+movies.sort(function(a,b){
+    if(a.revenue>b.revenue) return 1;
+    if(a.revenue<b.revenue) return -1;
+    return 0;
+})
+
+console.log(movies)
+
+
+
