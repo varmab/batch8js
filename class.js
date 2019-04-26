@@ -264,5 +264,116 @@ movies.sort(function(a,b){
 
 console.log(movies)
 
+var user={}
+
+user.name="Varma"
+user["age"]=undefined;
+
+//delete user.age;
+
+if("age" in user){
+    console.log("age exists")
+}
+else
+{
+    console.log("age does not exists")
+}
 
 
+var teacher=Object.assign({},user);
+
+var lecturer={
+    name:"Varma",
+    address: {
+        city:"Hyderbad",
+        state:"TS"
+    }
+}
+
+var myFullName="Varma Bhupatiraju"
+
+let mySubject="JavaScript"
+
+if(true){
+    let mySubject="Java"
+    console.log(mySubject)
+}
+
+console.log(mySubject)
+
+const PI=3.141444
+
+function add(...numbers){
+    //console.log(numbers)
+    return numbers.reduce(function(total,number){
+        return total+number;
+    })
+}
+
+var sum=a=>a+1;
+
+var myFirstName="Varma"
+var myLastName="Bhupatiraju"
+var address="MIG 27/1, Road #6"
+var area="KPHB"
+var city="Hyderbad"
+var postalCode="500072"
+
+var addressLabel=myFirstName + " " + myLastName + "\n" +
+                    address + "\n" +
+                    area + "," + city + " " + postalCode;
+
+console.log(addressLabel)
+
+var newAddressLabel=`
+${myFirstName} ${myLastName}
+${address}
+${city}, ${postalCode}
+${add(1,2)}
+`
+
+var family=["varma","neelima","suma","mother","father","motherinlaw","fatherinlaw"];
+
+// var me=family[0]
+// var wife=family[1]
+// var daughter=family[2]
+
+var [me,wife,daughter,...others]=family;
+console.log(me,wife,daughter);
+
+var person={
+    name:"Varma",
+    age:46
+}
+
+var {name,age}=person;
+console.log(newAddressLabel)
+
+
+class Animal {
+    constructor(category){
+        this.category=category;
+    }
+
+    showCategory(){
+        console.log(this.category)
+    }
+}
+
+var wildAnimal=new Animal("wild");
+console.log(wildAnimal.showCategory());
+
+class Cat extends Animal {
+    constructor(category,name){
+        super(category);
+        this.name=name;
+    }
+
+    showName(){
+        console.log(this.name)
+    }
+}
+
+var monty=new Cat("home","Monty");
+console.log(monty.showName());
+console.log(monty.showCategory());

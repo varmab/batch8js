@@ -6,6 +6,7 @@
     <title>DOM Class</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
 <body>
     <h1>DOM Class</h1>
@@ -14,34 +15,69 @@
     </p>
     <a href="http://yahoo.com">Yahoo!!!</a>
     <button>Say Hello</button>
+
+    <div>Div 1</div>
+    <div class="highlight">Div 2</div>
+    <div id="third">Div 3</div>
+    <div class="highlight">Div 4</div>
 </body>
 </html>
 <script>
-    var h1=document.querySelector("h1"); //SELECT
-    h1.style.color="red";
+    // var h1=document.querySelector("h1"); //SELECT
+    // h1.style.color="red";
 
-    var p=document.querySelector("p"); //SELECT
-    //console.log(p.innerHTML);
-    //p.innerHTML="<b>Thank you</b> for coming"
+    // var p=document.querySelector("p"); //SELECT
+    // //console.log(p.innerHTML);
+    // //p.innerHTML="<b>Thank you</b> for coming"
 
-    var a=document.querySelector("a");
-    a.setAttribute("href","http://google.com");
-    a.textContent="Google";
+    // var a=document.querySelector("a");
+    // a.setAttribute("href","http://google.com");
+    // a.textContent="Google";
 
-    var button=document.querySelector("button");
-    button.addEventListener("click",function(){
-        //alert("Hello")
-        var body=document.querySelector("body");
-        body.style.backgroundColor="green"
+    // var button=document.querySelector("button");
+    // button.addEventListener("click",function(){
+    //     //alert("Hello")
+    //     var body=document.querySelector("body");
+    //     body.style.backgroundColor="green"
+    // })
+
+    // //
+    // p.addEventListener("mouseover",function(){
+    //     p.textContent="Thank you for coming"
+    // })
+
+    // p.addEventListener("mouseout",function(){
+    //     p.textContent="Welcome to CS"
+    // })
+
+</script>
+<script>
+    $("h1").css("color","green");
+    $("div").css("background-color","purple");
+    $(".highlight").css("width","200px");
+    $("#third").css("border","1px solid orange")
+    $("div:first").css("color","pink")
+
+
+    var p=$("p");
+
+    p.on("mouseover",function(){
+        p.text("Thank you for coming");
     })
 
-    //
-    p.addEventListener("mouseover",function(){
-        p.textContent="Thank you for coming"
-    })
 
-    p.addEventListener("mouseout",function(){
-        p.textContent="Welcome to CS"
+    $("button").on("click",function(){
+        $.ajax({
+            url:"http://jsonplaceholder.typicode.com/posts/1",
+            success:function(data){
+                console.log(data)
+                $("p").text(data.title);
+            },
+            error:function(err){
+                console.log(err)
+            },
+            type:"GET"
+        })
     })
 
 </script>
